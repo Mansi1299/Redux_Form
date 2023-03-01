@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useParams, useSearchParams } from "react-router-dom";
 import { createSearchParams } from "react-router-dom";
 import "./App.css";
 import { addUser } from "./store/slice/UserInfoSlice";

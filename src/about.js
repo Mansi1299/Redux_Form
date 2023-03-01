@@ -1,12 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useParams, useSearchParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createSearchParams } from "react-router-dom";
-import { addUser } from "./store/slice/UserInfoSlice";
+import { useLocation } from "react-router-dom";
+import Infouser from './Infouser';
+import { useMemo } from "react";
+function useQuery() {
+  const { search } = useLocation();
+
+  return React.useMemo(() => new URLSearchParams(search), [search]);
+}
 
 const About = () => {
+
+  let query = useQuery();
+
+
+
   const uerInfo = useSelector((state) => state.userInfo.users);
   const useNavigateSearch = () => {
     const navigate = useNavigate();
@@ -22,15 +32,25 @@ const About = () => {
 
   const handleNavigate = (data) => {
     console.log();
-    navigateSearch("/about", {
+    navigateSearch("/infouser"
+    , {
       id: data.id + 1,
       name: data.name,
       age: data.age,
       classm: data.classm,
       subject: data.subject,
       school: data.school,
-    });
+    }                                                                                                                                                                                                  
+    );
   };
+
+  const handleback= (data) => {
+    console.log();
+    navigateSearch("/home"
+    
+    );
+  };
+  
 
   return (
     <div>
@@ -66,6 +86,8 @@ const About = () => {
           })}
         </tbody>
       </table>
+
+      <button type="button" onClick={handleback}>back</button>
     </div>
   );
 };
